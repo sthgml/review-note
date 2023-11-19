@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import "../../css/today_modal.css"
 import useFirestore from '../../hooks/useFirestore';
 
 // homejsx에서 props로 전달받은 uid

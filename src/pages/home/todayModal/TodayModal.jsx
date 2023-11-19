@@ -1,7 +1,8 @@
 import React, { useEffect, useRef } from 'react'
-import { useAuthContext } from '../../hooks/useAuthContext'
-import DiaryForm from './DiaryForm'
-import iconHeart from "../../images/icon/heart.svg"
+import { useAuthContext } from '../../../hooks/useAuthContext'
+import DiaryForm from '../DiaryForm'
+import iconHeart from "../../../images/icon/heart.svg"
+import * as TM from "./TodayModal.Style.jsx"
 
 export default function TodayModal({ setIsModalOpen }) {
 	const { user } = useAuthContext();
@@ -17,8 +18,8 @@ export default function TodayModal({ setIsModalOpen }) {
 
     return (
         <>
-            <div ref={dim} className="dim"></div>
-            <section className="today">
+            <TM.Dim ref={dim} className="dim"></TM.Dim>
+            <TM.Section className="today">
 
                 <h2 className="title typing">
                     <span className="mark">당장</span>&nbsp;기록해서 복습하기
@@ -31,7 +32,7 @@ export default function TodayModal({ setIsModalOpen }) {
                 </h3>
         
                 <DiaryForm uid={user.uid} handleClose={handleClose}></DiaryForm>
-            </section> 
+            </TM.Section> 
         </>
     )
 }

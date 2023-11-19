@@ -5,6 +5,7 @@ import Login from './pages/login/Login';
 import Join from './pages/join/Join';
 import { useAuthContext } from "./hooks/useAuthContext";
 import { useState } from 'react';
+import GlobalStyle from './GlobalStyle';
 
 function App() {
 
@@ -13,15 +14,17 @@ function App() {
 
   return (
     <>
+      <GlobalStyle />
       { isAuthReady ?
-      <BrowserRouter>
-        <Header isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
-        <Routes>
-          <Route path='/' element={user ? <Home isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} /> : <Navigate replace={true} to="/login" />} />
-          <Route path='/login' element={!user ? <Login /> : <Navigate replace={true} to="/" />} />
-          <Route path='/' element={!user ? <Join /> : <Navigate replace={true} to="/" />} />
-        </Routes>
-      </BrowserRouter> :
+        <BrowserRouter>
+          <Header isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
+          <Routes>
+            <Route path='/' element={user ? <Home isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} /> : <Navigate replace={true} to="/login" />} />
+            <Route path='/login' element={!user ? <Login /> : <Navigate replace={true} to="/" />} />
+            <Route path='/' element={!user ? <Join /> : <Navigate replace={true} to="/" />} />
+          </Routes>
+        </BrowserRouter> 
+      :
       "loading"}
     </>
   );

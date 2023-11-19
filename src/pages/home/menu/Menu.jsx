@@ -1,4 +1,5 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef } from 'react';
+import * as M from "./Menu.style.jsx"
 
 export default function Menu({ isMenuOpen, setIsMenuOpen }) {
   
@@ -8,11 +9,11 @@ export default function Menu({ isMenuOpen, setIsMenuOpen }) {
 
   return (
     <>
-      <ul className={`paper-list ${isMenuOpen ? 'opened' : ''}`}>
+      <M.Ul className={`paper-list ${isMenuOpen ? 'opened' : ''}`}>
             <li> 
               <button className='btn-settings' type='button' onClick={handleClose}>추후 개발 예정</button> 
             </li>
-        </ul>
+        </M.Ul>
     </>
   )
 }

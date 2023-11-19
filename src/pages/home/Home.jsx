@@ -1,12 +1,12 @@
-import TodayModal from "./TodayModal"
+import TodayModal from "./todayModal/TodayModal"
 import DiaryList from './DiaryList';
-import Nav from "./Nav";
-import Menu from "./Menu";
+import Nav from "./nav//Nav";
+import Menu from "./menu/Menu";
 import useCollection from '../../hooks/useCollection';
 import { useAuthContext } from "../../hooks/useAuthContext";
 import iconDofDay from "../../images/icon/icon-d-of-day.png"
 import { useState } from "react";
-import "../../css/home.css"
+import * as H from "./Home.style.jsx"
 
 export default function Home({isMenuOpen, setIsMenuOpen}) {
 	const { user } = useAuthContext();
@@ -20,12 +20,11 @@ export default function Home({isMenuOpen, setIsMenuOpen}) {
   };
 
   return (
-    <div className="home-wrapper"> 
+    <H.HomeWrapper className="home-wrapper"> 
       <Menu isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen}/>
-      
       <main className="home">
         <Nav />
-        <section className="old">
+        <H.Old className="old">
           <h2 className="title typing">
             <span className="mark">당장</span>
             &nbsp;기록했던 내용들을 다시 타이핑 해보면서 복습해보세요!
@@ -41,16 +40,16 @@ export default function Home({isMenuOpen, setIsMenuOpen}) {
               {documents && <DiaryList diaries={documents} />}
             </ul>
           </div>
-        </section>
+        </H.Old>
       </main>
       
-      <button type="button" className="btn-new" onClick={handleNewBtn}>
+      <H.BtnNew type="button" className="btn-new" onClick={handleNewBtn}>
           <div className="x-1"></div>
           <div className="x-2"></div>
           <p className="guide">당장 복습하기!</p>
-      </button>
+      </H.BtnNew>
 
       {isModalOpen && <TodayModal setIsModalOpen={setIsModalOpen}/>}
-    </div>
+    </H.HomeWrapper>
   )
 }

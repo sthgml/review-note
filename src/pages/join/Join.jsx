@@ -1,4 +1,3 @@
-import '../../css/join.css';
 import { useState } from 'react';
 import { useSignup } from '../../hooks/useSingup';
 // test e-mail : example@exam.ple

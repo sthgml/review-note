@@ -1,4 +1,3 @@
-import '../../css/join.css';
 import { useLogin } from '../../hooks/useLogin';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';

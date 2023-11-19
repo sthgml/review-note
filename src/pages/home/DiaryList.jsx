@@ -2,6 +2,7 @@ import { deleteDoc } from "firebase/firestore"
 import useFirestore from "../../hooks/useFirestore"
 import iconEdit from "../../images/icon/icon-edit-bk.png"
 import iconDelete from "../../images/icon/icon-delete.svg"
+import * as H from "./Home.style.jsx"
 
 function DiaryList ({ diaries }) {
     const { deleteDocument } = useFirestore('diary');

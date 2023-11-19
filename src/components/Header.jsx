@@ -2,7 +2,8 @@ import { useAuthContext } from "../hooks/useAuthContext";
 import { useLogout } from "../hooks/useLogout"
 import { Link, useLocation } from "react-router-dom";
 import logoSm from "../images/당장복습헤_logo @4x.png";
-import iconLogout from "../images/icon/icon-logout.svg"
+import iconLogout from "../images/icon/icon-logout.svg";
+import * as H from "./Header.style.jsx";
 
 function Header ({ isMenuOpen, setIsMenuOpen }) {
 
@@ -14,7 +15,7 @@ function Header ({ isMenuOpen, setIsMenuOpen }) {
     }
 
     return (
-        <header>
+        <H.Header>
             <div className="container">
                 <div className="left-header">
                     <button type="button" id="hamburger" className={`menu-btn ${isMenuOpen ? 'opened' : ''}`} onClick={handleMenu}>
@@ -62,7 +63,7 @@ function Header ({ isMenuOpen, setIsMenuOpen }) {
                 </div>
             </div>
 
-        </header>
+        </H.Header>
     )
 }
 export default Header
