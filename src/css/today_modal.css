@@ -1,0 +1,134 @@
+/* ---- 새기록 만들기 버튼 ---- */
+
+.x-1,
+.x-2 {
+    width: 32px;
+    height: 3px;
+    background-color: var(--bg-2);
+    position: absolute;
+    top: 31px;
+    left: 16px;
+    transition: all 0.4s;
+}
+
+.x-1 {
+    transform: rotate(90deg);
+}
+
+.x-2 {
+    transform: rotate(0deg);
+}
+
+.btn-new{
+    position: sticky;
+    margin-left: 16px;
+    top: 88vh;
+
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+
+    box-shadow: 0 0 16px var(--bg-4);
+    z-index: 10;
+    order: 10;
+}
+
+.guide {
+    color: var(--em);
+    position: absolute;
+    width: 120px;
+    text-align: center;
+    background-color: var(--bg-2);
+    box-shadow: 0 0 16px var(--bg-3);
+    opacity: 0;
+
+    top: -2em;
+    left: calc(0px - 10px - 1em);
+
+    border-radius: 8px;
+    padding: 8px;
+    transition: all 0.3s;
+}
+
+.btn-new:hover .guide{
+    opacity: 1;
+    transform: translateY(-1em);
+}
+
+.btn-new:hover .x-1 {
+    transform: rotate(180deg);
+}
+
+.btn-new:hover .x-2 {
+    transform: rotate(90deg);
+}
+
+/* ---- today modal ---- */
+.off {
+    display: none;
+}
+
+.hidden {
+    display: none;
+}
+
+.today {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+
+    padding: 32px 24px;
+    width: 464px;
+    flex-direction: column;
+
+    min-width: 464px;
+    max-width: 100%;
+    margin: auto;
+    background: var(--bg-2);
+    border-radius: 16px;
+}
+
+.form.new {
+    background: var(--bg);
+    padding: 16px;
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-width: 100%;
+    min-width: 368px;
+}
+
+.today h2 {
+    width: max-content;
+    margin: 0 auto;
+    margin-bottom: 32px;
+}
+
+h2.title::before {
+    content: '';
+    background: url("../images/quote-start.png") center/contain no-repeat;
+    width: 60px;
+    height: 60px;
+}
+
+h2.title::after {
+    content: '';
+    background: url("../images/quote-end.png") center/contain no-repeat;
+    width: 60px;
+    height: 60px;
+}
+
+/* ---- today modal ---- */
+
+/* ---- dim ---- */
+.dim {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: #000000c5;
+}

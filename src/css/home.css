@@ -1,0 +1,188 @@
+main.home {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 메뉴 */
+.paper-list{
+  position: absolute;
+  width: 240px;
+  height: 100vh;
+  background: var(--bg-4);
+  transition: all 0.5s;
+  z-index: 20;
+  left: -240px;
+  top: 70px;
+}
+
+.paper-list.opened {
+  display: block;
+  position: fixed;
+  transform: translateX(240px);
+  transition: all 0.5s;
+}
+
+.paper-list li{
+  width: 100%;
+  padding: 32px;
+}
+
+/* 시간대별 탭 */
+.nav {
+  padding: 48px 0;
+}
+
+.nav ul {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  font-size: 16px;
+}
+
+.nav ul li {
+  cursor: pointer;
+  color: var(--medium);
+  background: var(--bg-4);
+  padding: 8px 24px 8px 16px;
+  border-radius: 8px 0 0 8px;
+  transition: all 0.2s;
+}
+
+.nav ul li.opened {
+  color: var(--em);
+  background: var(--bg-2);
+  font-weight: bold;
+}
+
+.nav ul li::before {
+  content: '';
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  vertical-align: -0.6em;
+  background: url("../images/icon/heart_60.svg") ;
+}
+
+.nav ul li.opened::before {
+  background: url("../images/icon/heart.svg") ;
+}
+
+.nav ul li:hover {
+  background-color: var(--bg);
+}
+
+.nav ul li.opened:hover {
+  background-color: var(--bg-2);
+}
+
+@media (max-width:748px) {
+  .main {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+  }
+
+  .nav {
+      padding: 0;
+  }
+  .nav ul {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+  }
+
+  .nav ul li {
+      width: 100px;
+      border-radius: 8px 8px 0 0;
+  }
+
+  section.old {
+      margin-top: 0;
+  }
+}
+
+/* ---- 오래된 기록들 ---- */
+h2.title::before {
+  content: '';
+  background: url("../images/quote-start.png") center/contain no-repeat;
+  width: 60px;
+  height: 60px;
+}
+
+h2.title::after {
+  content: '';
+  background: url("../images/quote-end.png") center/contain no-repeat;
+  width: 60px;
+  height: 60px;
+}
+
+.old {
+  
+  max-width: 100%;
+  margin: auto;
+  padding: 32px 48px;
+  background: var(--bg-2);
+  border-radius: 16px;
+  box-shadow: inset 0 0 32px blue;
+
+}
+
+.old h2 {
+  margin: 0;
+}
+
+.old .note-list,
+.one-day .note-list,
+.one-week .note-list,
+.one-month .note-list {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.note-list article {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+
+  max-width: 100%;
+  width: 478px;
+  padding: 30px 28px 35px;
+  border-radius: 16px;
+  background-color: var(--bg);
+  box-shadow: 0 0 8px var(--bg);
+  transition: all 0.2s;
+}
+
+.note-list article:hover {
+  box-shadow: 0 0 50px var(--bg);
+  transform: scale(1.02);
+}
+
+.note-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--icon, #9BABB2);
+  width: 100%;
+  text-align: center;
+  white-space: pre-wrap;
+  line-height: 20px;
+}
+
+.note-content {
+  background: none;
+  width: 100%;
+  font-size: 14px;
+  color: var(--em, #dde0e4);
+  line-height: 20px;
+  resize: none;
+  border-radius: 8px;
+  padding: 4px;
+}
+
+.note-content:hover {
+  background-color: var(--bg-3);
+}
