@@ -27,7 +27,7 @@ export const useLogin = () => {
             // catch == 에러 잡으면은~~
             setError(errormsg);
             setIsPending(false);
-            console.error(error)
+            console.log(errormsg);
         })
     }
     return { error, isPending, login }

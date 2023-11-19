@@ -21,7 +21,7 @@ function App() {
           <Routes>
             <Route path='/' element={user ? <Home isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} /> : <Navigate replace={true} to="/login" />} />
             <Route path='/login' element={!user ? <Login /> : <Navigate replace={true} to="/" />} />
-            <Route path='/' element={!user ? <Join /> : <Navigate replace={true} to="/" />} />
+            <Route path='/join' element={!user ? <Join /> : <Navigate replace={true} to="/" />} />
           </Routes>
         </BrowserRouter> 
       :

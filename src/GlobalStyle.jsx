@@ -12,7 +12,7 @@ const GlobalStyle = createGlobalStyle`
     position: absolute;
   }
 
-  @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+
 
   :root {
     --icon : #9BABB2;

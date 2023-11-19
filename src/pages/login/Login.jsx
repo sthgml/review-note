@@ -2,10 +2,11 @@ import { useLogin } from '../../hooks/useLogin';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import logoBig from "../../images/당장복습헤_logo 1.png"
+import * as J from "../join/Join.style.jsx"
 
 function Login () {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const [email, setEmail] = useState('heehee00@mufi.com');
+    const [password, setPassword] = useState('heehee00');
     const { error, isPending, login } = useLogin();
 
     const handleData = (event) => {
@@ -23,7 +24,7 @@ function Login () {
     }
 
     return (
-        <main className="main">
+        <J.Main className="main">
         <Link to="./">
             <img src={logoBig} alt="당장복습헤 로고" className="logo-big"/>
         </Link>
@@ -44,6 +45,7 @@ function Login () {
                     name="user-email" 
                     className="user-email" placeholder="example@exam.ple" 
                     onChange={handleData} 
+                    value={'heehee00@mufi.com'}
                     required 
                 />
                 <p className="warning-text">
@@ -61,6 +63,7 @@ function Login () {
                     placeholder="비밀번호" 
                     className="user-pw" 
                     onChange={handleData}
+                    value={'heehee00'}
                     required
                 />
                 <p className="warning-text">
@@ -95,7 +98,7 @@ function Login () {
             </button>
         </div> */}
         <p className="assistive-text">Copyright 2023. Sohee Park All rights reserved.</p>
-    </main>
+    </J.Main>
     )
 }
 export default Login

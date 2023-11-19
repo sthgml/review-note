@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { useSignup } from '../../hooks/useSingup';
+import * as J from "./Join.style.jsx";
+import logoBig from "../../images/당장복습헤_logo 1.png"
 // test e-mail : example@exam.ple
 // test password : 123123
 
@@ -28,8 +30,8 @@ function Join () {
   }
 
   return (
-    <main className="main">
-    <a href="./"><img src="./images/당장복습헤_logo 1.png" alt="당장복습헤 로고" className="logo-big"/></a>
+    <J.Main className="main">
+    <a href="./"><img src={logoBig} alt="당장복습헤 로고" className="logo-big"/></a>
     <h1 className="mark">회원가입</h1>
     <form className="form" action="#" method="post" name="user-info-join" onSubmit={handleSubmit}>
       <div className="input-user-email">
@@ -57,7 +59,7 @@ function Join () {
       </button>
     </form>
     <p className="assistive-text">Copyright 2023. Sohee Park All rights reserved.</p>
-  </main>
+  </J.Main>
   )
 }
 export default Join
