@@ -16,12 +16,13 @@ function App() {
     <>
       <GlobalStyle />
       { isAuthReady ?
-        <BrowserRouter>
+        <BrowserRouter basename={process.env.PUBLIC_URL}>
           <Header isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
           <Routes>
             <Route path='/' element={user ? <Home isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} /> : <Navigate replace={true} to="/login" />} />
             <Route path='/login' element={!user ? <Login /> : <Navigate replace={true} to="/" />} />
             <Route path='/join' element={!user ? <Join /> : <Navigate replace={true} to="/" />} />
+            <Route path='*' element={<Navigate replace={true} to="/"/>} />
           </Routes>
         </BrowserRouter> 
       :
