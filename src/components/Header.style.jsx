@@ -106,7 +106,6 @@ export const Header = styled.header`
     display: flex;
     justify-content: center;
     align-items: center;
-
   }
 
   .info {
@@ -126,8 +125,14 @@ export const Header = styled.header`
     width: 32px;
   }
 
-  .text-logout {
+  [class^="text"] {
     color: var(--em);
+  }
+
+  [class^="link"] {
+    display: flex;
+    align-items: center;
+    gap: 4px;
   }
 
 `

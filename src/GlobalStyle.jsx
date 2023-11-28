@@ -12,8 +12,6 @@ const GlobalStyle = createGlobalStyle`
     position: absolute;
   }
 
-
-
   :root {
     --icon : #9BABB2;
     --em : #DDE0E4;
