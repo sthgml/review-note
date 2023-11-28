@@ -16,7 +16,7 @@ function App() {
     <>
       <GlobalStyle />
       { isAuthReady ?
-        <BrowserRouter basename={process.env.PUBLIC_URL}>
+        <BrowserRouter>
           <Header isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
           <Routes>
             <Route path='/' element={user ? <Home isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} /> : <Navigate replace={true} to="/login" />} />
