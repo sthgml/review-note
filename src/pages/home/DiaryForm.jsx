@@ -6,6 +6,7 @@ export default function DiaryForm({ uid, handleClose }) {
     const [title, setTitle] = useState("");
     const [text, setText] = useState("");
     const {addDocument, response} = useFirestore('diary'/* 원하는 이름을 넣엊세요 이것이 collection의 이름이 될겁니다 */);
+    const [error, setError] = useState(null);
 
     const handleData = (event) => {
         if (event.target.id === 'user-title') {
@@ -34,11 +35,11 @@ export default function DiaryForm({ uid, handleClose }) {
             <form className="form" action="#" method="post" name="user-info-join" onSubmit={handleSubmit}>
                 <div className="input-user-flex">
                     <input type="text" id="user-title" name="user-title" placeholder="제목을 적어주세요!" className="user-title" onChange={handleData}/>
-                    <p className="warning-text">warning text</p>
+                    {error && <p className="warning-text">warning text</p>}
                 </div>
                 <div className="input-user-flex">
                     <textarea id="user-content" name="user-content"  className="user-content" rows="17" placeholder="50분간 배웠던 내용을 기억나는대로 적어보세요!" onChange={handleData}></textarea>
-                    <p className="warning-text">warning text</p>
+                    {error && <p className="warning-text">warning text</p>}
                 </div>
                 <button type="submit" className="btn-save">
                     저장하기

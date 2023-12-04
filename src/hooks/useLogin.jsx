@@ -15,7 +15,8 @@ export const useLogin = () => {
     const login = (email, password) => {
         setIsPending(true);
 
-        signInWithEmailAndPassword(appAuth, email, password).then((userCredential)=>{
+        signInWithEmailAndPassword(appAuth, email, password)
+        .then((userCredential)=>{
             // then == 잘 되면은~ == SIGNOUT SUCCESS;
             const user = userCredential.user
             dispatch({ type: 'login', payload: user})
@@ -25,9 +26,8 @@ export const useLogin = () => {
             }
         }).catch((errormsg)=>{
             // catch == 에러 잡으면은~~
-            setError(errormsg);
+            setError(errormsg.toString());
             setIsPending(false);
-            console.log(errormsg);
         })
     }
     return { error, isPending, login }
