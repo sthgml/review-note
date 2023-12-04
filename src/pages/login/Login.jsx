@@ -1,13 +1,17 @@
 import { useLogin } from '../../hooks/useLogin';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import logoBig from "../../images/당장복습헤_logo 1.png"
-import * as J from "../join/Join.style.jsx"
+import logoBig from "../../images/당장복습헤_logo 1.png";
+import Toggle from './Toggle.jsx';
+import * as J from "../join/Join.style.jsx";
 
 function Login () {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const { error, isPending, login } = useLogin();
+
+    const inputEmail = useRef();
+    const inputPassword = useRef();
 
     const handleData = (event) => {
         if (event.target.type === "email") {
@@ -21,6 +25,22 @@ function Login () {
         event.preventDefault();
         login(email, password);
     }
+
+    const handleCheckChange = async (e) => {
+        const checked = e.target.checked;
+        if (checked) {
+            setEmail("example@exam.ple");
+            setPassword("123123");
+        } else if (!checked) {
+            setEmail("");
+            setPassword("");
+        }
+    }
+
+    useEffect(()=>{
+        inputEmail.current.value = email;
+        inputPassword.current.value = password;
+    },[email, password])
 
     return (
         <J.Main className="main">
@@ -39,6 +59,7 @@ function Login () {
                     이메일
                 </label>
                 <input 
+                    ref={inputEmail}
                     type="email" 
                     id="user-email" 
                     name="user-email" 
@@ -55,6 +76,7 @@ function Login () {
                     비밀번호
                 </label>
                 <input 
+                    ref={inputPassword}
                     type="password" 
                     id="user-pw" 
                     name="user-pw" 
@@ -68,6 +90,8 @@ function Login () {
                 </p>}
             </div>
             
+            <Toggle onChange={handleCheckChange}/>
+
             {isPending 
             ? <strong>로그인이 진행중입니다.</strong> 
             : <button 
