@@ -6,6 +6,7 @@ import Join from './pages/join/Join';
 import { useAuthContext } from "./hooks/useAuthContext";
 import { useState } from 'react';
 import GlobalStyle from './GlobalStyle';
+import loadingAnimation from "./images/makingPageAnimation.gif"
 
 function App() {
 
@@ -26,7 +27,13 @@ function App() {
           </Routes>
         </BrowserRouter> 
       :
-      "loading"}
+      <img src={loadingAnimation} alt='로딩애니메이션' style={{
+        display: "block",
+        height: "100vh",
+        width: "150px",
+        objectFit: "contain",
+        margin: "auto"
+      }}></img>}
     </>
   );
 }
