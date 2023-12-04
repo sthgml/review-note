@@ -5,8 +5,8 @@ import logoBig from "../../images/당장복습헤_logo 1.png"
 import * as J from "../join/Join.style.jsx"
 
 function Login () {
-    const [email, setEmail] = useState('heehee00@mufi.com');
-    const [password, setPassword] = useState('heehee00');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
     const { error, isPending, login } = useLogin();
 
     const handleData = (event) => {
@@ -19,7 +19,6 @@ function Login () {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        // console.log(email, password);
         login(email, password);
     }
 
@@ -45,12 +44,11 @@ function Login () {
                     name="user-email" 
                     className="user-email" placeholder="example@exam.ple" 
                     onChange={handleData} 
-                    value={'heehee00@mufi.com'}
                     required 
                 />
-                <p className="warning-text">
+                {error && <p className="warning-text">
                     아이디를 확인해주세요!
-                </p>
+                </p>}
             </div>
             <div className="input-user-pw">
                 <label htmlFor="user-pw">
@@ -63,12 +61,11 @@ function Login () {
                     placeholder="비밀번호" 
                     className="user-pw" 
                     onChange={handleData}
-                    value={'heehee00'}
                     required
                 />
-                <p className="warning-text">
+                {error && <p className="warning-text">
                     비밀번호를 확인해주세요!
-                </p>
+                </p>}
             </div>
             
             {isPending 
@@ -78,7 +75,6 @@ function Login () {
                 className="btn-join">
                     로그인
             </button>}
-            {error && <strong>{error}</strong>}
         </form>
         {/* 소셜로그인 
         <div className="division">

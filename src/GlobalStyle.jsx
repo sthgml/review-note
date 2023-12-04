@@ -78,10 +78,7 @@ const GlobalStyle = createGlobalStyle`
 
   .warning-text {
     font-size: 12px;
-    color: red;
-
-    /* js로 컨트롤 */
-    display: none;
+    color: #ff5d5d;
   }
 
   .assistive-text {
