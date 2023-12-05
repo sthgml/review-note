@@ -1,11 +1,12 @@
-import { useAuthContext } from "../hooks/useAuthContext";
-import { useLogout } from "../hooks/useLogout"
+import { useAuthContext } from "../../../hooks/useAuthContext";
+import { useLogout } from "../../../hooks/useLogout"
 import { Link, useLocation } from "react-router-dom";
-import logoSm from "../images/당장복습헤_logo @4x.png";
-import iconLogout from "../images/icon/icon-logout.svg";
-import iconLogin from "../images/icon/icon-login.svg";
-import iconJoin from "../images/icon/icon-join.svg";
+import logoSm from "../../../images/당장복습헤_logo @4x.png";
+import iconLogout from "../../../images/icon/icon-logout.svg";
+import iconLogin from "../../../images/icon/icon-login.svg";
+import iconJoin from "../../../images/icon/icon-join.svg";
 import * as H from "./Header.style.jsx";
+import Hamburger from "./Hamburger.jsx";
 
 function Header ({ isMenuOpen, setIsMenuOpen }) {
 
@@ -20,12 +21,7 @@ function Header ({ isMenuOpen, setIsMenuOpen }) {
         <H.Header>
             <div className="container">
                 <div className="left-header">
-                    <button type="button" id="hamburger" className={`menu-btn ${isMenuOpen ? 'opened' : ''}`} onClick={handleMenu}>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                    </button>
-                    
+                    {user && <Hamburger handleMenu={handleMenu}/>}
                     <h1>
                         <p className="a11y-hidden">당장복습헤_logo</p>
                         <Link href="./">
@@ -41,13 +37,13 @@ function Header ({ isMenuOpen, setIsMenuOpen }) {
                             {location.pathname !== '/join' ?
                                 <>
                                     <Link to="/login" className={"link-login"}>
-                                        <img src={iconLogin} alt="icon-login" className="icon-login" />
-                                    <p className="text-login">로그인</p>
+                                        <img src={iconLogin} alt="icon-login" className="icon-login"/>
+                                        <p className="text-login">로그인</p>
                                         </Link>
                                     <Link to="/join" className="link-join">
-                                    <img src={iconJoin} alt="icon-join" className="icon-join" />
-                                    <p className="text-join">회원가입</p>
-                                        </Link>
+                                        <img src={iconJoin} alt="icon-join" className="icon-join" />
+                                        <p className="text-join">회원가입</p>
+                                    </Link>
                                 </>
                                 : <Link to="/login" className={"text-join"}>로그인</Link>
                             }
