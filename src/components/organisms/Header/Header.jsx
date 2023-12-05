@@ -21,7 +21,7 @@ function Header ({ isMenuOpen, setIsMenuOpen }) {
         <H.Header>
             <div className="container">
                 <div className="left-header">
-                    {user && <Hamburger handleMenu={handleMenu}/>}
+                    {user && <Hamburger isMenuOpen={isMenuOpen} handleMenu={handleMenu}/>}
                     <h1>
                         <p className="a11y-hidden">당장복습헤_logo</p>
                         <Link href="./">
