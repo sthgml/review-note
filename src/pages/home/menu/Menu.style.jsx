@@ -8,7 +8,6 @@ export const Ul = styled.ul`
   transition: all 0.5s;
   z-index: 20;
   left: -240px;
-  top: 70px;
   
   &.opened {
     display: block;

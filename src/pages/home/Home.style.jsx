@@ -5,11 +5,11 @@ import quoteEnd from "../../images/quote-end.png"
 export const HomeWrapper = styled.div`
   display: flex;
   position: relative;
-  margin-top: 32px;
 
   main {
       display: flex;
       margin: 0 auto;
+      margin-top: 32px;
       align-items: flex-start;
     }
 
