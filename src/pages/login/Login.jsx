@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import logoBig from "../../images/당장복습헤_logo 1.png";
 import Toggle from './Toggle.jsx';
+import Input from '../../components/molecules/Input.jsx';
 import * as J from "../join/Join.style.jsx";
 
 function Login () {
@@ -14,11 +15,16 @@ function Login () {
     const inputPassword = useRef();
 
     const handleData = (event) => {
-        if (event.target.type === "email") {
-            setEmail(event.target.value);
-        } else if (event.target.type === "password") {
-            setPassword(event.target.value);
-        }
+        const temp = event.target.value;
+        setTimeout(()=>{
+            if (temp === event.target.value) {
+                if (event.target.type === "email") {
+                    setEmail(temp);
+                } else if (event.target.type === "password") {
+                    setPassword(temp);
+                }
+            }
+        }, 400);
     }
 
     const handleSubmit = (event) => {
@@ -38,6 +44,7 @@ function Login () {
     }
 
     useEffect(()=>{
+        // console.log(email, password)
         inputEmail.current.value = email;
         inputPassword.current.value = password;
     },[email, password])
@@ -54,6 +61,18 @@ function Login () {
         method="post" 
         name="user-info-join" 
         onSubmit={handleSubmit}>
+            {/* <Input 
+                label={"이메일"}
+                type={"email"} 
+                id={"user-email"}
+                name={"user-email"} 
+                className={"user-email"}
+                placeholder={"example@exam.ple"} 
+                onKeyUp={handleData} 
+                isRequired={true} 
+                warningText={"아이디를 확인해주세요!"}
+            /> */}
+
             <div className="input-user-email">
                 <label htmlFor="user-email">
                     이메일
@@ -64,13 +83,14 @@ function Login () {
                     id="user-email" 
                     name="user-email" 
                     className="user-email" placeholder="example@exam.ple" 
-                    onChange={handleData} 
+                    onKeyUp={handleData} 
                     required 
                 />
                 {error && <p className="warning-text">
                     아이디를 확인해주세요!
                 </p>}
             </div>
+
             <div className="input-user-pw">
                 <label htmlFor="user-pw">
                     비밀번호
