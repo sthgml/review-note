@@ -18,26 +18,14 @@ export const HomeWrapper = styled.div`
       display: flex;
       flex-direction: column;
       align-items: center;
-    }
-
-    .nav {
-      padding: 0;
-    }
-    .nav ul {
-      display: flex;
-      flex-direction: row;
-      justify-content: space-around;
-    }
-
-    .nav ul li {
-      width: 100px;
-      border-radius: 8px 8px 0 0;
+      width: 100%;
+      margin-top: 12px;
     }
 
     section.old {
       margin-top: 0;
     }
-  }
+  } 
 `
 
 export const Old = styled.section`
@@ -64,6 +52,11 @@ export const Old = styled.section`
 
   h2 {
     margin: 0;
+  }
+
+  h2 span {
+    flex-shrink: 0;
+    margin-right: 12px;
   }
 
   .note-list,
@@ -118,6 +111,20 @@ export const Old = styled.section`
 
   .note-content:hover {
     background-color: var(--bg-3);
+  }
+
+  @media (max-width:500px) {
+    & {
+      padding: 24px;
+    }
+
+    h2 {
+      margin-bottom: 16px;
+    }
+
+    h3.title {
+      flex-direction: column;
+    }
   }
 `
 

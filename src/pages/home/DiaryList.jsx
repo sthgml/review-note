@@ -6,7 +6,7 @@ import * as H from "./Home.style.jsx"
 
 function DiaryList ({ diaries }) {
     const { deleteDocument } = useFirestore('diary');
-    console.log('diaries', diaries);
+    // console.log('diaries', diaries);
 
     const oldDiaries = diaries.map((item) => {
         return (

@@ -1,9 +1,14 @@
 import styled from "styled-components";
+import iconHeart from "../../../images/icon/heart.svg"
+import iconDofDay from "../../../images/icon/icon-d-of-day.png";
+import iconWofWeek from "../../../images/icon/icon-w-of-week.png";
+import iconMofMonth from "../../../images/icon/icon-m-of-month.png";
 
 export const Nav = styled.nav`
   padding: 48px 0;
   position: sticky;
-  top: 32px;
+  top: 68px;
+  z-index: 20;
 
   ul {
     display: flex;
@@ -34,11 +39,11 @@ export const Nav = styled.nav`
     width: 32px;
     height: 32px;
     vertical-align: -0.6em;
-    background: url("../images/icon/heart_60.svg") ;
+    background: url(${iconHeart}) no-repeat;
   }
 
   ul li.opened::before {
-    background: url("../images/icon/heart.svg") ;
+    background: url(${iconHeart}) no-repeat;
   }
 
   ul li:hover {
@@ -47,5 +52,26 @@ export const Nav = styled.nav`
 
   ul li.opened:hover {
     background-color: var(--bg-2);
+  }
+
+  @media (max-width:748px) {
+    & {
+      padding: 0;
+      top:42px;
+      margin-bottom: -8px;
+    }
+
+    ul {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      gap: 4px;
+    }
+
+    ul li {
+      width: 80px;
+      border-radius: 8px;
+      box-shadow: 0 0 4px #00000025;
+    }
   }
 `

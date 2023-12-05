@@ -1,4 +1,6 @@
 import styled from "styled-components";
+import logoSm from "../../../images/당장복습헤_logo 1.png";
+import logoXs from "../../../images/logo-xs.png";
 
 export const Header = styled.header`
   position: sticky;
@@ -6,7 +8,7 @@ export const Header = styled.header`
   width: 100%;
   border-bottom: 2px solid var(--bg);
   background-color: var(--bg-3, #263140);
-  z-index: 10;
+  z-index: 30;
 
   .container {
     width: 100%;
@@ -31,75 +33,12 @@ export const Header = styled.header`
     align-items: center;
   }
 
-  #hamburger {
-    width: 40px;
-    height: 40px;
-    padding: 8px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-  }
-
-  #hamburger div {
-    width: 100%;
-    height: 2px;
-    border-radius: 4px;
-    background-color: var(--icon);
-    transition: all 0.3s;
-  }
-  /* hover */
-  #hamburger:hover div:first-child{
-    transform: rotate(45deg);
-  }
-
-  #hamburger:hover div:nth-child(2){
-    transform: translate(-1em);
-  }
-
-  #hamburger:hover div:nth-child(3){
-    transform: rotate(-45deg);
-  }
-  /* active */
-  #hamburger:active div:first-child{
-    transform: translate(0.5em) rotate(45deg) ;
-  }
-
-  #hamburger:active div:nth-child(2){
-    transform: translate(-0.5em) ;
-  }
-
-  #hamburger:active div:nth-child(3){
-    transform: translate(0.5em) rotate(-45deg) ;
-  }
-
-  /* opened */
-  /* opened:hover */
-  #hamburger.opened:hover div:first-child{
-    transform: translate(-1em) rotate(-45deg) ;
-  }
-
-  #hamburger.opened:hover div:nth-child(2){
-    transform: translate(0) ;
-  }
-
-  #hamburger.opened:hover div:nth-child(3){
-    transform: translate(-1em) rotate(45deg) ;
-  }
-  /* opened:active */
-  #hamburger.opened:active div:first-child{
-    transform: translate(-1.5em) rotate(-45deg) ;
-  }
-
-  #hamburger.opened:active div:nth-child(2){
-    transform: translate(-0.5em) ;
-  }
-
-  #hamburger.opened:active div:nth-child(3){
-    transform: translate(-1.5em) rotate(45deg) ;
-  }
-
   .logo-sm {
-    width: 135px
+    width: 135px;
+    height: 32px;
+    margin: 8px;
+    background: url(${logoSm}) no-repeat;
+    background-size: contain;
   }
 
   h1 {
@@ -135,4 +74,21 @@ export const Header = styled.header`
     gap: 4px;
   }
 
+  @media (max-width: 475px) {
+    .logo-sm {
+      width: 32px;
+      padding: 4px;
+      box-sizing: border-box;
+      background: url(${logoXs}) no-repeat;
+      background-size: contain;
+    }
+
+    .info {
+      gap: 4px;
+    }
+
+    .text-logout {
+      display: none;
+    }
+  }
 `
