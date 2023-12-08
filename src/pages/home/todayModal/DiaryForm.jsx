@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import useFirestore from '../../hooks/useFirestore';
+import useFirestore from '../../../hooks/useFirestore';
 
 // homejsx에서 props로 전달받은 uid
 export default function DiaryForm({ uid, handleClose }) {
