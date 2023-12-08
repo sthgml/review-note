@@ -1,7 +1,6 @@
 import { useAuthContext } from "../../../hooks/useAuthContext";
 import { useLogout } from "../../../hooks/useLogout"
 import { Link, useLocation } from "react-router-dom";
-import logoSm from "../../../images/당장복습헤_logo @4x.png";
 import iconLogout from "../../../images/icon/icon-logout.svg";
 import iconLogin from "../../../images/icon/icon-login.svg";
 import iconJoin from "../../../images/icon/icon-join.svg";
@@ -25,7 +24,7 @@ function Header ({ isMenuOpen, setIsMenuOpen }) {
                     <h1>
                         <p className="a11y-hidden">당장복습헤_logo</p>
                         <Link href="./">
-                            <img src={logoSm} alt="당장복습헤 로고" className="logo-sm" />
+                            <div alt="당장복습헤 로고" className="logo-sm" />
                         </Link>
                     </h1>
                 </div>

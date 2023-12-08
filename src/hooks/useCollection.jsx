@@ -16,9 +16,9 @@ function useCollection (transaction, myQuery) { // sever의 데이터르 ㄹ불�
                 collection(appFireStore, transaction),
                 where(...myQuery)
             );
-            console.log('myQuery', myQuery);
-            console.log('q',q);
-            console.log('collection', collection(appFireStore, transaction))
+            // console.log('myQuery', myQuery);
+            // console.log('q',q);
+            // console.log('collection', collection(appFireStore, transaction))
         }
 
         const unsubscribe = onSnapshot( // 구독을 끊어주는 함수 반환

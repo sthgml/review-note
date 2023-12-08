@@ -6,7 +6,7 @@ export const Ul = styled.ul`
   height: 100vh;
   background: var(--bg-4);
   transition: all 0.5s;
-  z-index: 20;
+  z-index: 40;
   left: -240px;
   
   &.opened {

@@ -32,8 +32,8 @@ export default function Home({isMenuOpen, setIsMenuOpen}) {
   
           <div className="category-24hr">
             <h3 className="title">
-            <img src={iconDofDay} alt="icon-d-of-day" className="icon-d-of-day" />
-            <strong>24시간 </strong> &nbsp;| 지금 복습하면&nbsp; <strong>60%</strong>&nbsp;를 더 기억할 수 있어요!
+            {/* <img src={iconDofDay} alt="icon-d-of-day" className="icon-d-of-day" /> */}
+            {/* <strong>24시간 </strong> &nbsp;| 지금 복습하면&nbsp; <p><strong>60%</strong>&nbsp;를 더 기억할 수 있어요!</p> */}
             </h3>
             <ul className="note-list">
               {error && <strong>{error}</strong> }
