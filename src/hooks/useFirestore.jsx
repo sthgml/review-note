@@ -65,9 +65,11 @@ function useFirestore (transaction) {
 
     const deleteDocument = async (id)=>{
         try {
-            const docRef = await deleteDoc(doc(colRef, id));
-            dispatch({ type: "deleteDoc", payload: docRef});
+            const docRef = doc(colRef, id);
+            deleteDoc(docRef);
+            dispatch({ type: "deleteDoc", payload: docRef });
         } catch (error) {
+            console.log('삭제 실패!!!!', error)
             dispatch({type: 'error', payload: error.message})
         }
     }
