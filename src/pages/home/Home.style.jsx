@@ -101,6 +101,8 @@ export const Old = styled.section`
   .note-content {
     background: none;
     width: 100%;
+    min-height: 10px;
+    max-height: 400px;
     font-size: 14px;
     color: var(--em, #dde0e4);
     line-height: 20px;

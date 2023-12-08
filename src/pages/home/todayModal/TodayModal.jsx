@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react'
 import { useAuthContext } from '../../../hooks/useAuthContext'
-import DiaryForm from '../DiaryForm'
+import DiaryForm from './DiaryForm'
 import iconHeart from "../../../images/icon/heart.svg"
 import * as TM from "./TodayModal.Style.jsx"
 
