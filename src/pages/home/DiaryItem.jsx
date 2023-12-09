@@ -15,14 +15,19 @@ function DiaryItem ({ item }) {
     useEffect(()=>{
         textarea.current.style.height = 'auto';
         textarea.current.style.height = `${textarea.current.scrollHeight}px`;
+    },[]);
+
+    useEffect(()=>{
+        textarea.current.style.height = 'auto';
+        textarea.current.style.height = `${textarea.current.scrollHeight}px`;
     },[textareaValue]);
     
     const handleTextareaChange = (e) => {
         const temp = e.target.value;
         setTimeout(()=>{
-          if(temp === e.target.value){
-            setTextareaValue(e.target.value);
-          }
+            if(temp === e.target.value){
+                setTextareaValue(e.target.value);
+            }
         },400)
     };
     
