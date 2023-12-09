@@ -10,9 +10,8 @@ import * as H from "./Home.style.jsx"
 
 export default function Home({isMenuOpen, setIsMenuOpen}) {
 	const { user } = useAuthContext();
-  // console.log("user", user.uid); 
 
-  const { documents, error } = useCollection( 'diary', ['uid', '==', user.uid] );
+  const { documents, error } = useCollection( 'diary', ['doc.uid', '==', user.uid] );
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const handleNewBtn = (e) => {

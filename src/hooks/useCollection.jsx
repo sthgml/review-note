@@ -14,18 +14,15 @@ function useCollection (transaction, myQuery) { // sever의 데이터르 ㄹ불�
         if(myQuery){
             q = query(
                 collection(appFireStore, transaction),
-                where(...myQuery)
+                where(...myQuery),
             );
-            // console.log('myQuery', myQuery);
-            // console.log('q',q);
-            // console.log('collection', collection(appFireStore, transaction))
         }
-
+        
         const unsubscribe = onSnapshot( // 구독을 끊어주는 함수 반환
-            collection(appFireStore, transaction),
-            where(...myQuery),
-            // (myQuery ? q : collection(appFireStore, transaction)), 
-            // collection(appFireStore, transaction),
+            // 스냅샷찍을 컬렉션
+            // 쿼리이쓰면
+            (myQuery ? q : collection(appFireStore, transaction)),
+            // 스냅샷 함수
             (snapshot)=>{ //snapshot (사진직은것처럼 지금 데이터 전부를 담아옴)
                 let result = [];
                  // snapshot.docs안에 데이터가 배열상태로 저장되어있음
@@ -36,10 +33,9 @@ function useCollection (transaction, myQuery) { // sever의 데이터르 ㄹ불�
                     })
                 })
 
-                console.log('useCollection,result :',result)
-
                 setDocuments(result);
             },
+            // 에러함수
             (errMsg)=>{
                 setError(errMsg);
             }
@@ -52,4 +48,4 @@ function useCollection (transaction, myQuery) { // sever의 데이터르 ㄹ불�
 
     return { documents, error }
 }
-export default useCollection
+export default useCollection;
