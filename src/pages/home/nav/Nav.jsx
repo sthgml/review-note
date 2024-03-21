@@ -14,7 +14,6 @@ export default function Nav({
 
   const handleDiaryFilter = (e) => {
     const newSelected = navData.find(datum => datum.endTime == e.target.getAttribute('data-end'));
-    console.log(newSelected);
     setSelected(newSelected);
   }
 
