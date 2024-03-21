@@ -13,16 +13,20 @@ export default function Home({isMenuOpen, setIsMenuOpen}) {
 
   const { documents, error } = useCollection( 'diary', ['doc.uid', '==', user.uid] );
   const [ diaryData, setDiaryData ] = useState(documents);
+  const [ isModalOpen, setIsModalOpen ] = useState(false);
   const [ selected, setSelected ] = useState({
     startTime: 0,
     endTime: 9999
   });
 
-  useEffect(() => {
+  const syncData = () => {
     setDiaryData(documents);
-  }, [documents])
+  }
   
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  useEffect(() => {
+    syncData();
+  }, [documents, isModalOpen])
+  
   const handleNewBtn = (e) => {
     setIsModalOpen(true);
   };

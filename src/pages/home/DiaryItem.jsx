@@ -7,9 +7,13 @@ function DiaryItem ({ item }) {
     const [textareaValue, setTextareaValue] = useState('');
     const textarea = useRef();
 
-    const { deleteDocument } = useFirestore('diary');
-    const handleDelete = (id) => {
-        if(confirm("정말로 삭제하시겠습니까?")) deleteDocument(id)
+    const { deleteDocument, updateDocument } = useFirestore('diary');
+    const handleDelete = () => {
+        if(confirm("정말로 삭제하시겠습니까?")) deleteDocument(item.id);
+    }
+
+    const handleUpdate = () => {
+        if (confirm("수정하시겠습니까?")) updateDocument(item.id, {"doc.text": textareaValue});
     }
 
     // textarea 크기 변경!
@@ -31,6 +35,7 @@ function DiaryItem ({ item }) {
             }
         }, 400)
     };
+
     const createdTime = item.createdTime.toDate();
     const timeString = `${createdTime.getFullYear()}년 ${createdTime.getMonth()+1}월 ${createdTime.getDate()}일 ${createdTime.getHours() > 12 ? "오후": "오전"} ${createdTime.getHours() % 12}시 ${createdTime.getMinutes()}분 ${createdTime.getSeconds()}초`;
     
@@ -54,11 +59,11 @@ function DiaryItem ({ item }) {
                     </textarea>
 
                     <div className="div-btns">
-                        <button type="button" className="edit-btn">
+                        <button type="button" onClick={() => handleUpdate()} className="edit-btn">
                             <img src={iconEdit} alt="수정" />
                         </button>
                         <span className="divider-btns"></span>
-                        <button type="button" onClick={()=>handleDelete(item.id)} className="delete-btn">
+                        <button type="button" onClick={() => handleDelete()} className="delete-btn">
                             <img src={iconDelete} alt="삭제" />
                         </button>
                     </div>

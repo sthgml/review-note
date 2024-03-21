@@ -6,7 +6,7 @@ export default function DiaryForm({ uid, handleClose }) {
     const [title, setTitle] = useState("");
     const [text, setText] = useState("");
     const {addDocument, response} = useFirestore('diary'/* 원하는 이름을 넣엊세요 이것이 collection의 이름이 될겁니다 */);
-    const [error, setError] = useState(null);
+    const [error, ] = useState(null);
 
     const handleData = (event) => {
         if (event.target.id === 'user-title') {
@@ -26,8 +26,7 @@ export default function DiaryForm({ uid, handleClose }) {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        addDocument({uid, title, text})
-        console.log(title, text);
+        addDocument({uid, title, text});
     }
 
     return (
