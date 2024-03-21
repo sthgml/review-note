@@ -11,16 +11,17 @@ function DiaryItem ({ item }) {
     const handleDelete = (id) => {
         if(confirm("정말로 삭제하시겠습니까?")) deleteDocument(id)
     }
+
     // textarea 크기 변경!
     useEffect(()=>{
         textarea.current.style.height = 'auto';
         textarea.current.style.height = `${textarea.current.scrollHeight}px`;
-    },[]);
+    }, []);
 
     useEffect(()=>{
         textarea.current.style.height = 'auto';
         textarea.current.style.height = `${textarea.current.scrollHeight}px`;
-    },[textareaValue]);
+    }, [textareaValue]);
     
     const handleTextareaChange = (e) => {
         const temp = e.target.value;
@@ -28,8 +29,10 @@ function DiaryItem ({ item }) {
             if(temp === e.target.value){
                 setTextareaValue(e.target.value);
             }
-        },400)
+        }, 400)
     };
+    const createdTime = item.createdTime.toDate();
+    const timeString = `${createdTime.getFullYear()}년 ${createdTime.getMonth()+1}월 ${createdTime.getDate()}일 ${createdTime.getHours() > 12 ? "오후": "오전"} ${createdTime.getHours() % 12}시 ${createdTime.getMinutes()}분 ${createdTime.getSeconds()}초`;
     
     return (
         <>
@@ -39,7 +42,7 @@ function DiaryItem ({ item }) {
                         {item.doc.title}
                     </h4>
                     <p className="note-date assistive-text">
-                        {item.createdTime.seconds}
+                        {timeString}
                     </p>
                     <textarea 
                         ref={textarea}
@@ -47,7 +50,7 @@ function DiaryItem ({ item }) {
                         placeholder={item.doc.text}
                         defaultValue={item.doc.text}
                         onChange={handleTextareaChange}
-                        >
+                    >
                     </textarea>
 
                     <div className="div-btns">
