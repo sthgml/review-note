@@ -1,6 +1,6 @@
 import { useReducer } from "react"
 import { appFireStore, timestamp } from "../firebase/config";
-import { addDoc, collection, deleteDoc, deleteField, doc } from "firebase/firestore";
+import { addDoc, collection, deleteDoc, doc, updateDoc } from "firebase/firestore";
 
 const initState = {
     document: null, // firestore에 document생성을 요청하면 반환
@@ -39,6 +39,13 @@ const storeReducer = (state, action) => {
                 success: true,
                 error: null
             }
+        case "updateDoc":
+            return {
+                isPending: false,
+                document: action.payload,
+                success: true,
+                error: null
+            }
         default: return state;
     }
 }
@@ -58,7 +65,6 @@ function useFirestore (transaction) {
             dispatch({ type:'addDoc', payload: docRef })
         } catch (error){
             console.log('업로드 실패~!~!~!#@~!@~',error);
-            console.log("colRef", colRef);
             dispatch({type:'error', payload: error.message});
         }
     }
@@ -66,7 +72,7 @@ function useFirestore (transaction) {
     const deleteDocument = async (id)=>{
         try {
             const docRef = doc(colRef, id);
-            deleteDoc(docRef);
+            await deleteDoc(docRef);
             dispatch({ type: "deleteDoc", payload: docRef });
         } catch (error) {
             console.log('삭제 실패!!!!', error)
@@ -74,7 +80,18 @@ function useFirestore (transaction) {
         }
     }
 
-    return { addDocument, deleteDocument, response }
+    const updateDocument = async (id, data)=>{
+        try {
+            const docRef = doc(colRef, id);
+            const updatedDocRef = await updateDoc(docRef, data);
+            dispatch({ type: "updateDoc", payload: updatedDocRef });
+        } catch (error) {
+            console.log('수정 실패!!!!', error);
+            dispatch({type: 'error', payload: error.message})
+        }
+    }
+
+    return { addDocument, deleteDocument, updateDocument, response }
 }
 
 export default useFirestore
