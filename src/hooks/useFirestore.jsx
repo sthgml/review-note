@@ -58,8 +58,8 @@ function useFirestore (transaction) {
             dispatch({ type:'addDoc', payload: docRef })
         } catch (error){
             console.log('업로드 실패~!~!~!#@~!@~',error);
-            console.log("colRef",colRef)
-            dispatch({type:'error', payload: error.message})
+            console.log("colRef", colRef);
+            dispatch({type:'error', payload: error.message});
         }
     }
 

@@ -1,53 +1,55 @@
-import React, { useEffect, useRef } from 'react';
-import * as N from "./Nav.style.jsx"
+import React, { useEffect, useRef, useState } from 'react';
+import * as N from "./Nav.style.jsx";
+import { navData } from './navData.js';
+import useCollection from '../../../hooks/useCollection.jsx';
+import { useAuthContext } from '../../../hooks/useAuthContext.jsx';
 
-export default function Nav() {
-  const tapAll = useRef();
-  const tap24 = useRef();
-  const tapWeek = useRef();
-  const tapMonth = useRef();
+export default function Nav({ 
+  setDiaryData,
+  selected, 
+  setSelected
+}) {
+  const { user } = useAuthContext();
+  const { documents } = useCollection( 'diary', ['doc.uid', '==', user.uid] );
 
-  useEffect(()=>{
-    tapAll.current.classList.add("opened");
-    tap24.current.classList.remove("opened");
-    tapWeek.current.classList.remove("opened");
-    tapMonth.current.classList.remove("opened");
-  }, [])
-
-  const handleTapChange = (e) => {
-    if (!e.target.classList.contains("opened")) {
-      e.target.classList.add("opened");
-
-      switch (e.target) {
-        case tapAll.current :
-          // 나머지 다꺼
-          tap24.current.classList.remove("opened");
-          tapWeek.current.classList.remove("opened");
-          tapMonth.current.classList.remove("opened");
-          break;
-        // case tap24.current :
-        //   break;
-        // case tapWeek.current :
-        //   break;
-        // case tapMonth.current :
-        //   break;
-        default:
-          tapAll.current.classList.remove("opened");
-          break;
-      }
-    } else {
-      e.target.classList.remove("opened");
-    }
+  const handleDiaryFilter = (e) => {
+    const newSelected = navData.find(datum => datum.endTime == e.target.getAttribute('data-end'));
+    console.log(newSelected);
+    setSelected(newSelected);
   }
+
+  useEffect(() => {
+    if (!documents) return;
+
+    const filteredDocuments = documents.filter(doc => {
+      const createdTime = doc.createdTime.toDate();
+      const now = new Date();
+      const diff = now - createdTime;
+      const selectedMilliEnd = Number(selected.endTime) * 60 * 60 * 1000;
+      const selectedMilliStart = Number(selected.startTime) * 60 * 60 * 1000;
+      return diff < selectedMilliEnd && diff > selectedMilliStart;
+    });
+
+    setDiaryData(filteredDocuments);
+  }, [selected])
 
   return (
     <>
         <N.Nav className="nav">
             <ul className='nav-ul'>
-                <li ref={tapAll} className="tap-all" onClick={handleTapChange}>모든 기록</li>
-                <li ref={tap24} className="tap-24hr" onClick={handleTapChange}>24시간</li>
-                <li ref={tapWeek} className="tap-week" onClick={handleTapChange}>일주일</li>
-                <li ref={tapMonth} className="tap-month" onClick={handleTapChange}>한 달</li>
+                {navData.map(datum => (<>
+                  <li 
+                    data-end={datum.endTime}
+                    className={`${datum.className} ${
+                      datum.startTime == selected.startTime 
+                      && datum.endTime == selected.endTime ? 
+                      'opened' : ''}`
+                    }
+                    onClick={handleDiaryFilter}
+                  >
+                    {datum.label}
+                  </li>
+                </>))}
             </ul>
         </N.Nav>
     </>

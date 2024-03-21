@@ -4,15 +4,24 @@ import Nav from "./nav//Nav";
 import Menu from "./menu/Menu";
 import useCollection from '../../hooks/useCollection';
 import { useAuthContext } from "../../hooks/useAuthContext";
-import iconDofDay from "../../images/icon/icon-d-of-day.png"
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import * as H from "./Home.style.jsx"
+import CategoryTitle from "./CategoryTitle";
 
 export default function Home({isMenuOpen, setIsMenuOpen}) {
 	const { user } = useAuthContext();
 
   const { documents, error } = useCollection( 'diary', ['doc.uid', '==', user.uid] );
+  const [ diaryData, setDiaryData ] = useState(documents);
+  const [ selected, setSelected ] = useState({
+    startTime: 0,
+    endTime: 9999
+  });
 
+  useEffect(() => {
+    setDiaryData(documents);
+  }, [documents])
+  
   const [isModalOpen, setIsModalOpen] = useState(false);
   const handleNewBtn = (e) => {
     setIsModalOpen(true);
@@ -22,7 +31,11 @@ export default function Home({isMenuOpen, setIsMenuOpen}) {
     <H.HomeWrapper className="home-wrapper"> 
       <Menu isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen}/>
       <main className="home">
-        <Nav />
+        <Nav 
+          selected={selected} 
+          setSelected={setSelected} 
+          setDiaryData={setDiaryData}
+        />
         <H.Old className="old">
           <h2 className="title typing">
             <span className="mark">당장</span>
@@ -30,13 +43,10 @@ export default function Home({isMenuOpen, setIsMenuOpen}) {
           </h2>
   
           <div className="category-24hr">
-            <h3 className="title">
-            {/* <img src={iconDofDay} alt="icon-d-of-day" className="icon-d-of-day" /> */}
-            {/* <strong>24시간 </strong> &nbsp;| 지금 복습하면&nbsp; <p><strong>60%</strong>&nbsp;를 더 기억할 수 있어요!</p> */}
-            </h3>
+            <CategoryTitle selected={selected}/>
             <ul className="note-list">
               {error && <strong>{error}</strong> }
-              {documents && <DiaryList diaries={documents} />}
+              {diaryData && <DiaryList diaries={diaryData} />}
             </ul>
           </div>
         </H.Old>

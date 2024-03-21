@@ -2,7 +2,7 @@ import { collection, onSnapshot, where, query } from "firebase/firestore";
 import { useEffect, useState } from "react"
 import { appFireStore } from "../firebase/config";
 
-function useCollection (transaction, myQuery) { // sever의 데이터르 ㄹ불러오겠다./
+function useCollection (transaction, myQuery) { // sever의 데이터를 불러오겠다./
     /* transaction : collection 이름 내맘대로 햇던그것 */
     
     // 문서들의 데이터를 관리
@@ -23,7 +23,7 @@ function useCollection (transaction, myQuery) { // sever의 데이터르 ㄹ불�
             // 쿼리이쓰면
             (myQuery ? q : collection(appFireStore, transaction)),
             // 스냅샷 함수
-            (snapshot)=>{ //snapshot (사진직은것처럼 지금 데이터 전부를 담아옴)
+            (snapshot) => { //snapshot (사진직은것처럼 지금 데이터 전부를 담아옴)
                 let result = [];
                  // snapshot.docs안에 데이터가 배열상태로 저장되어있음
                 snapshot.docs.forEach((doc)=>{
@@ -32,7 +32,7 @@ function useCollection (transaction, myQuery) { // sever의 데이터르 ㄹ불�
                         id:doc.id
                     })
                 })
-
+                result = result.sort((a, b) => b.createdTime.seconds - a.createdTime.seconds)
                 setDocuments(result);
             },
             // 에러함수
